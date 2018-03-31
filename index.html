@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 <meta charset="utf-8">
+<meta name="description" content="Restaurant Application">    
 <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
   <link rel="stylesheet" href="css/styles.css">
-    
   <title>Restaurant Reviews</title>
 </head>
 
 <body>
   <header>
-      <a href="#neighborhoods-select" class="skip-link">Skip to Filter</a>
+      <a href="#neighborhoods-select" class="skip-link">Skip to Filter Results</a>
     <nav>
       <h1><a href="/">Restaurant Reviews</a></h1>
     </nav>
@@ -23,7 +23,7 @@
       <div id="map"></div>
     </section>
     <section>
-      <div class="filter-options">
+      <div class="filter-options" role="form" aria-labelledby="Filter Restaurants Results">
         <h2>Filter Results</h2>
         <select id="neighborhoods-select" name="neighborhoods" onchange="updateRestaurants()">
           <option value="all">All Neighborhoods</option>
@@ -44,6 +44,16 @@
   <footer id="footer">
     Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
   </footer>
+    
+    <script>
+        if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').then(function(reg) {
+    console.log('Yey!', reg);
+  }).catch(function(err) {
+    console.log('Boo!', err);
+  });
+}
+    </script>
 
 </body>
 

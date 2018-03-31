@@ -50,7 +50,7 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 }
 #footer {
   background-color: #444;
-  color: #aaa;
+  color: #fff;
   font-size: 8pt;
   letter-spacing: 1px;
   padding: 25px;
@@ -117,6 +117,7 @@ nav h1 a {
 .filter-options {
   width: -webkit-fill-available;
   height: 100px;
+    margin-top: -60px;
   background-color: #3397DB;
   align-items: center;
   padding-left: calc((100% - 444px)/2);
@@ -124,11 +125,11 @@ nav h1 a {
 
 }
 .filter-options h2 {
-  color: white;
-  font-size: 1rem;
+  color: black;
+  font-size: 1.2rem;
   font-weight: normal;
   line-height: 1;
-  margin: 0 20px;
+  margin: 0 20px 0 163px;
   padding-top: 10px;
     
 }
@@ -176,7 +177,7 @@ nav h1 a {
   min-width: 100%;
 }
 #restaurants-list li h1 {
-  color: #f18200;
+  color: black;
   font-family: Arial,sans-serif;
   font-size: 14pt;
   font-weight: 200;
@@ -191,8 +192,9 @@ nav h1 a {
 }
 #restaurants-list li a {
   background-color: orange;
-  border-bottom: 3px solid #eee;
-  color: #fff;
+ /* border-bottom: 3px solid #eee;*/
+  color: black;
+    font-weight: bold;
   display: inline-block;
   font-size: 10pt;
   margin: 15px 0 0;
@@ -249,13 +251,14 @@ nav h1 a {
 	width: 100%;
 }
 #restaurant-container{
-  border-bottom: 1px solid #d9d9d9;
+  border-bottom: 1px solid #fff;
   border-top: 1px solid #fff;
   width: 50%;
 }
 
 #reviews-container {
     width: 50%;
+    border-top: 1px solid #fff;
 }
 #reviews-container h2 {
   color: #f58500;
@@ -303,8 +306,21 @@ a.skip-link{
 }
 a.skip-link:focus {
     top: 0;
+    border: 1px solid white;
 }
 
+:focus {
+    outline: 2px solid #fd3b67;
+    
+}
+
+/*
+button:hover, button:focus {
+    background: #e91e63;
+    color: #fff;
+    text-decoration: underline;
+}
+*/
 
 /* media queries */
 @media screen and (max-width: 800px){
@@ -319,7 +335,7 @@ a.skip-link:focus {
     }
     
     #restaurant-container, #reviews-container {
-        border-bottom: 1px solid #d9d9d9;
+        border-bottom: 1px solid #fff;
         border-top: 1px solid #fff;
         padding: 140px 0px 30px 0;
         width: 100%;
@@ -328,6 +344,7 @@ a.skip-link:focus {
 
 @media screen and (min-width: 516){
     #reviews-container {
+    border-top: 1px solid #fff;
     border-bottom: 1px solid #d9d9d9;
     border-top: 1px solid #fff;
     padding: 140px 0px 30px;
@@ -343,10 +360,10 @@ a.skip-link:focus {
     }
 }
 
-@media screen and (max-width: 460px){
+@media screen and (max-width: 480px){
     .filter-options{
     width: -webkit-fill-available;
-    height: 100px;
+    height: 160px;
     background-color: #3397DB;
     align-items: center;
     padding-left: calc((100% - 275px)/2);
@@ -374,6 +391,10 @@ a.skip-link:focus {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     display: inline-table;
 }
+    
+    .filter-options h2 {
+        margin: 0 20px 0 8px;
+    }
     
 }
     
