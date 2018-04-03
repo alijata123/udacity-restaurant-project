@@ -25,7 +25,8 @@ self.addEventListener('install', function (event) {
                           '/sw.js',
                           '/js/main.js',
                           '/css/styles.css',
-                          '/img/', '/cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css',
+                          '/img/',
+                '//cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css',
                           '/restaurant.html',
                           '/data/restaurants.json'
                       ]

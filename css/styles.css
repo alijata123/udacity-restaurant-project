@@ -10,7 +10,7 @@ html{
 body,td,th,p{
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 10pt;
-	color: #333;
+	color: black;
 	line-height: 1.5;
 }
 body {
@@ -144,6 +144,10 @@ nav h1 a {
   padding: 0 10px;
   width: 200px;
     
+}
+
+#filterText {
+    font-weight: 600;
 }
 
 /* ====================== Restaurant Listing ====================== */
@@ -311,6 +315,7 @@ a.skip-link:focus {
 
 :focus {
     outline: 2px solid #fd3b67;
+    border: 1px solid white;
     
 }
 
