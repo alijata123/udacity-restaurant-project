@@ -98,8 +98,9 @@ nav h1 a {
 
 /* Add a color to all links inside the list */
 #breadcrumb li a {
-    color: #0275d8;
+    color: black;
     text-decoration: none;
+    font-weight: bold;
 }
 
 /* Add a color on mouse-over */
@@ -224,7 +225,7 @@ nav h1 a {
   width: -webkit-fill-available;
 }
 #restaurant-name {
-  color: #f18200;
+  color: black;
   font-family: Arial,sans-serif;
   font-size: 20pt;
   font-weight: 200;
@@ -265,7 +266,7 @@ nav h1 a {
     border-top: 1px solid #fff;
 }
 #reviews-container h2 {
-  color: #f58500;
+  color: black;
   font-size: 24pt;
   font-weight: 300;
   letter-spacing: -1px;
@@ -330,7 +331,7 @@ button:hover, button:focus {
 /* media queries */
 @media screen and (max-width: 800px){
     .inside #map-container{
-        background: blue none repeat scroll 0 0;
+        background: #f3f3f3 none repeat scroll 0 0;
         height: 87%;
         right: 0;
         top: 80px;

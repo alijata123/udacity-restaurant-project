@@ -26,9 +26,18 @@ self.addEventListener('install', function (event) {
                           '/js/main.js',
                           '/css/styles.css',
                           '/img/',
-                '//cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css',
                           '/restaurant.html',
-                          '/data/restaurants.json'
+                          '/data/restaurants.json',
+                          'restaurant.html?id=1',
+                          'restaurant.html?id=2',
+                          'restaurant.html?id=3',
+                          'restaurant.html?id=4',
+                          'restaurant.html?id=5',
+                          'restaurant.html?id=6',
+                          'restaurant.html?id=7',
+                          'restaurant.html?id=8',
+                          'restaurant.html?id=9',
+                          'restaurant.html?id=10'
                       ]
                   );
               })
@@ -42,19 +51,13 @@ self.addEventListener('activate', function (event) {
 self.addEventListener('fetch', function (event) {
     event.respondWith(
         caches.match(event.request)
-              .then(function (response) {
-                  // comments from Mozilla MDN
-                  // caches.match() always resolves
-                  // but in case of success response will have value
+              .then(function (response) {           
                   if (response !== void 0) {
                       return response;
                   } else {
                       return fetch(event.request)
                           .then((response) => {
                               let responseClone;
-                              // response may be used only once
-                              // we need to save clone to put one copy in cache
-                              // and serve second one
                               if (response && response.url) {
                                   responseClone = response.clone();
                                   caches
@@ -78,3 +81,6 @@ self.addEventListener('message', function (event) {
         return this.skipWaiting();
     }
 });
+
+
+
