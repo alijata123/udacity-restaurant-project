@@ -29,6 +29,7 @@ self.addEventListener('install', function (event) {
                           '/restaurant.html',
                           '/data/restaurants.json',
                           'restaurant.html?id=1',
+                        'https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',
                           'restaurant.html?id=2',
                           'restaurant.html?id=3',
                           'restaurant.html?id=4',
