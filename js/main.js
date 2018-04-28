@@ -121,6 +121,7 @@ resetRestaurants = (restaurants) => {
   self.restaurants = restaurants;
 }
 
+
 /**
  * Create all restaurants HTML and add them to the webpage.
  */
