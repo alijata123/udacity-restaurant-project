@@ -29,7 +29,6 @@ self.addEventListener('install', function (event) {
                           '/restaurant.html',
                           '/data/restaurants.json',
                           'restaurant.html?id=1',
-                        'https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',
                           'restaurant.html?id=2',
                           'restaurant.html?id=3',
                           'restaurant.html?id=4',
@@ -86,18 +85,6 @@ self.addEventListener('message', function (event) {
 
 
 
-
-// indexedDB
-function createDB() {
-  idb.open('products', 1, function(upgradeDB) {
-    var store = upgradeDB.createObjectStore('beverages', {
-      keyPath: 'id'
-    });
-    store.put({id: 123, name: 'coke', price: 10.99, quantity: 200});
-    store.put({id: 321, name: 'pepsi', price: 8.99, quantity: 100});
-    store.put({id: 222, name: 'water', price: 11.99, quantity: 300});
-  });
-}
 
 
 

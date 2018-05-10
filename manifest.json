@@ -1,0 +1,32 @@
+{
+    "short_name": "Restaurants App",
+    "name": "Udacity Restaurant Application",
+    "start_url": "/?utm_source=homescreen",
+    "icons": [
+        {
+            "src": "img/logo/icon - 48px.png",
+            "type": "image/png",
+            "sizes": "48x48"
+    },
+        {
+            "src": "img/logo/icon - 96px.png",
+            "type": "image/png",
+            "sizes": "96x96"
+    },
+        {
+            "src": "img/logo/icon -192 x 192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+    },
+        {  
+      "src": "/img/logo/icon - 592px.png",  
+      "sizes": "512x512",  
+      "type": "image/png"  
+    }
+  ],
+    
+    "theme_color": "#317EFB",
+    "background_color": "#2196F3",
+    "display": "standalone",
+    "orientation": "landscape"
+}

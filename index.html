@@ -1,60 +1,100 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
     <meta charset="utf-8">
     <meta name="description" content="Restaurant Application">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
-    <link rel="stylesheet" href="css/styles.css">
-    <script src="localForage-1.7.1/dist/localforage.min.js"></script>
+    <meta name="theme-color" content="#317EFB" />
+    <link rel="icon" type="image/png" href="img/logo/favicon.png">
+    <link rel="manifest" href="manifest.json">
+    <title>Restaurant Home Page</title>
+    <style>
+body,td,th,p{color:black;line-height:1.5}body{background-color:#fdfdfd;margin:0;position:relative}ul,li{font-family:Arial,Helvetica,sans-serif;font-size:10pt;color:#333}a{color:orange;text-decoration:none}a:hover,a:focus{color:#3397db;text-decoration:none}a img{border:none 0 #fff}h1,h2,h3,h4,h5,h6{font-family:Arial,Helvetica,sans-serif;margin:0 0 20px}article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}#footer{background-color:#444;color:#fff;font-size:8pt;letter-spacing:1px;padding:25px;text-align:center;text-transform:uppercase}nav{width:100%;height:80px;background-color:#252831;text-align:center}nav h1{margin:auto;padding-top:23px}nav h1 a{color:#fff;font-size:14pt;font-weight:200;text-transform:uppercase}#breadcrumb{padding:10px 40px 16px;list-style:none;background-color:#eee;font-size:17px;margin:0;width:-webkit-fill-available}#breadcrumb li{display:inline}#breadcrumb li+li:before{padding:8px;color:black;content:"/\00a0"}#breadcrumb li a{color:black;text-decoration:none;font-weight:700}#breadcrumb li a:hover{color:#01447e;text-decoration:underline}#map{height:400px;width:100%;background-color:#ccc}.filter-options{width:-webkit-fill-available;height:100px;margin-top:0;padding-top:50px;background-color:#3397DB;align-items:center;padding-left:calc((100% - 512px)/2)}.filter-options h2{color:black;font-size:1.2rem;font-weight:400;line-height:1;margin:0 20px 0 163px;padding-top:10px}.filter-options select{background-color:white;border:1px solid #fff;font-family:Arial,sans-serif;font-size:11pt;height:30px;letter-spacing:0;margin:10px;padding:0 10px;width:200px}#filterText{font-weight:600}#restaurants-list{background-color:#f3f3f3;list-style:outside none none;margin:50px;padding:30px 15px 60px;text-align:center}#restaurants-list li{background-color:#fff;border:2px solid #ccc;font-family:Arial,sans-serif;margin:15px;min-height:380px;padding:0 30px 25px;text-align:left;width:270px;display:inline-table;padding-top:20px;box-shadow:0 4px 8px 0 rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.19);display:inline-table}#restaurants-list .restaurant-img{background-color:#ccc;display:none;margin:0;max-width:100%;min-height:248px;min-width:100%}#restaurants-list li h1{color:black;font-family:Arial,sans-serif;font-size:14pt;font-weight:200;letter-spacing:0;line-height:1.3;margin:20px 0 10px;text-transform:uppercase}#restaurants-list p{margin:0;font-size:11pt}#restaurants-list li a{background-color:orange;color:black;font-weight:700;display:inline-block;font-size:10pt;margin:15px 0 0;padding:8px 30px 10px;text-align:center;text-decoration:none;text-transform:uppercase}.inside header{top:0;width:100%}#map-container{width:100%}#map{display:flex}.inside #footer{position:absolute;width:-webkit-fill-available}#restaurant-name{color:black;font-family:Arial,sans-serif;font-size:20pt;font-weight:200;letter-spacing:0;margin:15px 0 30px;text-transform:uppercase;line-height:1.1;margin-left:calc((100% - 260px)/2)}#restaurant-img{width:100%}#restaurant-address{font-size:12pt;margin:10px 0;padding-left:25%}#restaurant-cuisine{background-color:#333;color:#ddd;font-size:12pt;font-weight:300;letter-spacing:10px;margin:0 0 20px;padding:2px 0;text-align:center;text-transform:uppercase;width:100%}#restaurant-container{border-bottom:1px solid #fff;width:50%}#reviews-container{width:50%;border-top:1px solid #fff}#reviews-container h3{color:black;font-size:24pt;font-weight:300;letter-spacing:-1px;padding-bottom:1pt;margin-left:calc((100% - 50px)/2);padding-top:4px}#reviews-list{margin:0;padding:0}#reviews-list li{background-color:#fff;border:2px solid #f3f3f3;list-style-type:none;margin:0 0 30px;padding:20px 0 20px 5px;width:100%}#reviews-list li p{margin:0 0 10px}#restaurant-hours{padding-left:25%}#restaurant-hours td{color:#666}a.skip-link{position:absolute;top:-40px;left:0;background:#bf1722;color:white;padding:8px;z-index:100}a.skip-link:focus{top:0;border:1px solid white}:focus{outline:2px solid #fd3b67;border:1px solid white}@media screen and (max-width:800px){.inside #map-container{background:#f3f3f3 none repeat scroll 0 0;height:87%;right:0;top:80px;width:100%}#restaurant-container,#reviews-container{border-bottom:1px solid #fff;padding:140px 0 30px 0;width:100%}}@media screen and (min-width:516){#reviews-container{border-bottom:1px solid #d9d9d9;padding:140px 0 30px;width:100%}#reviews-container h2{padding-left:5px}restaurant-address{margin-left:5px}}@media screen and (max-width:588px){.filter-options{width:-webkit-fill-available;height:160px;background-color:#3397DB;align-items:center;padding-left:calc((100% - 200px)/2);display:inline-grid}#restaurants-list{background-color:#f3f3f3;list-style:outside none none;margin:0;padding:40px 0 25px;text-align:center}#restaurants-list li{background-color:#fff;border:2px solid #ccc;font-family:Arial,sans-serif;margin:15px;min-height:380px;padding:0 20px 25px;text-align:left;width:270px;display:inline-table;padding-top:20px;box-shadow:0 4px 8px 0 rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.19);display:inline-table}.filter-options h2{margin:0 20px 0 8px}}@media only screen and (max-width:1011px){.inside #footer{width:-webkit-fill-available}}.welcome-text{text-align:center;background-color:#edf8ff;padding-top:100px;padding-bottom:100px}.welcome-text h2{text-align:center;color:darkslategray}.democlass{background-color:#ccc;display:block;margin:0;max-width:100%;min-height:248px;min-width:100%}
 
-    <script src="js/db.js"></script>
+    </style>
 
-    <title>Restaurant Reviews</title>
 </head>
 
 <body>
     <header>
         <a href="#restaurants-list" class="skip-link" tabindex="1">Skip to Restaurants List</a>
         <nav>
-            <h1><a href="/" tabindex="2">Restaurant Reviews</a></h1>
+            <h1><a href="/" tabindex="2">Restaurant Home</a></h1>
         </nav>
     </header>
-
     <main id="maincontent">
-        <section id="map-container">
-            <h3>Google Map</h3>
-            <div tabindex="-1" id="map" role="application" aria-hidden="true"></div>
-        </section>
         <section>
+            <div class="welcome-text">
+                <h2>Welcome to Restaurants Application</h2>
+                <h3>Here you will find restaurants located near you, including their working hours, reviews, and locations using goolge maps.</h3>
+            </div>
             <div class="filter-options">
                 <label for="filterRestaurant" id="filterText">Filter Results</label>
-
                 <select id="neighborhoods-select" aria-label="filterNeighborhoods" name="neighborhoods" onchange="updateRestaurants()" tabindex="3">
              <option value="all">All Neighborhoods</option>
         </select>
-
                 <select id="cuisines-select" aria-label="filterCuisines" name="cuisines" onchange="updateRestaurants()" tabindex="4">
               <option value="all">All Cuisines</option>
         </select>
             </div>
-            <ul id="restaurants-list" tabindex="5"></ul>
+
+            <div>
+                <ul id="restaurants-list" tabindex="5"></ul>
+            </div>
+
         </section>
-
-
+        <section id="map-container">
+            <div tabindex="-1" id="map" role="application" aria-hidden="true"></div>
+        </section>
     </main>
-
-    <script type="application/javascript" charset="utf-8" src="js/dbhelper.js"></script>
-    <script type="application/javascript" charset="utf-8" src="js/main.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7lOMI74flAEB9s-oa_NHDQECTv3HbCMo&libraries=places&callback=initMap"></script>
-
-
     <footer id="footer">
         Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
     </footer>
-
     <!--
+    <script type="application/javascript" charset="utf-8" src="js/dbhelper.min.js" async></script>
+    <script type="application/javascript" charset="utf-8" src="js/main.min.js" async></script>
+-->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7lOMI74flAEB9s-oa_NHDQECTv3HbCMo&libraries=places&callback=initMap"></script>
+    <script src="js/db.js" async></script>
+    
+    <script>
+        class DBHelper{static get DATABASE_URL(){const port=1337
+return `http://localhost:${port}/restaurants`}
+static fetchRestaurants(callback){let xhr=new XMLHttpRequest();xhr.open('GET',DBHelper.DATABASE_URL);xhr.onload=()=>{if(xhr.status===200){const restaurants=JSON.parse(xhr.responseText);callback(null,restaurants)}else{const error=(`Request failed. Returned status of ${xhr.status}`);callback(error,null)}};xhr.send()}
+static fetchRestaurantById(id,callback){DBHelper.fetchRestaurants((error,restaurants)=>{if(error){callback(error,null)}else{const restaurant=restaurants.find(r=>r.id==id);if(restaurant){callback(null,restaurant)}else{callback('Restaurant does not exist',null)}}})}
+static fetchRestaurantByCuisine(cuisine,callback){DBHelper.fetchRestaurants((error,restaurants)=>{if(error){callback(error,null)}else{const results=restaurants.filter(r=>r.cuisine_type==cuisine);callback(null,results)}})}
+static fetchRestaurantByNeighborhood(neighborhood,callback){DBHelper.fetchRestaurants((error,restaurants)=>{if(error){callback(error,null)}else{const results=restaurants.filter(r=>r.neighborhood==neighborhood);callback(null,results)}})}
+static fetchRestaurantByCuisineAndNeighborhood(cuisine,neighborhood,callback){DBHelper.fetchRestaurants((error,restaurants)=>{if(error){callback(error,null)}else{let results=restaurants
+if(cuisine!='all'){results=results.filter(r=>r.cuisine_type==cuisine)}
+if(neighborhood!='all'){results=results.filter(r=>r.neighborhood==neighborhood)}
+callback(null,results)}})}
+static fetchNeighborhoods(callback){DBHelper.fetchRestaurants((error,restaurants)=>{if(error){callback(error,null)}else{const neighborhoods=restaurants.map((v,i)=>restaurants[i].neighborhood)
+const uniqueNeighborhoods=neighborhoods.filter((v,i)=>neighborhoods.indexOf(v)==i)
+callback(null,uniqueNeighborhoods)}})}
+static fetchCuisines(callback){DBHelper.fetchRestaurants((error,restaurants)=>{if(error){callback(error,null)}else{const cuisines=restaurants.map((v,i)=>restaurants[i].cuisine_type)
+const uniqueCuisines=cuisines.filter((v,i)=>cuisines.indexOf(v)==i)
+callback(null,uniqueCuisines)}})}
+static urlForRestaurant(restaurant){return(`./restaurant.html?id=${restaurant.id}`)}
+static imageUrlForRestaurant(restaurant){return(`/img/${restaurant.photograph}`+'.webp')}
+static mapMarkerForRestaurant(restaurant,map){const marker=new google.maps.Marker({position:restaurant.latlng,title:restaurant.name,url:DBHelper.urlForRestaurant(restaurant),map:map,animation:google.maps.Animation.DROP});return marker}}
+    </script>
+    
+    <script>
+        let restaurants,neighborhoods,cuisines
+var map
+var markers=[]
+document.addEventListener('DOMContentLoaded',(event)=>{fetchNeighborhoods();fetchCuisines()});fetchNeighborhoods=()=>{DBHelper.fetchNeighborhoods((error,neighborhoods)=>{if(error){console.error(error)}else{self.neighborhoods=neighborhoods;fillNeighborhoodsHTML()}})}
+fillNeighborhoodsHTML=(neighborhoods=self.neighborhoods)=>{const select=document.getElementById('neighborhoods-select');neighborhoods.forEach(neighborhood=>{const option=document.createElement('option');option.innerHTML=neighborhood;option.value=neighborhood;select.append(option)})}
+fetchCuisines=()=>{DBHelper.fetchCuisines((error,cuisines)=>{if(error){console.error(error)}else{self.cuisines=cuisines;fillCuisinesHTML()}})}
+fillCuisinesHTML=(cuisines=self.cuisines)=>{const select=document.getElementById('cuisines-select');cuisines.forEach(cuisine=>{const option=document.createElement('option');option.innerHTML=cuisine;option.value=cuisine;select.append(option)})}
+window.initMap=()=>{let loc={lat:40.722216,lng:-73.987501};self.map=new google.maps.Map(document.getElementById('map'),{zoom:12,center:loc,scrollwheel:!1});updateRestaurants()}
+updateRestaurants=()=>{const cSelect=document.getElementById('cuisines-select');const nSelect=document.getElementById('neighborhoods-select');const cIndex=cSelect.selectedIndex;const nIndex=nSelect.selectedIndex;const cuisine=cSelect[cIndex].value;const neighborhood=nSelect[nIndex].value;DBHelper.fetchRestaurantByCuisineAndNeighborhood(cuisine,neighborhood,(error,restaurants)=>{if(error){console.error(error)}else{resetRestaurants(restaurants);fillRestaurantsHTML()}})}
+resetRestaurants=(restaurants)=>{self.restaurants=[];const ul=document.getElementById('restaurants-list');ul.innerHTML='';self.markers.forEach(m=>m.setMap(null));self.markers=[];self.restaurants=restaurants}
+fillRestaurantsHTML=(restaurants=self.restaurants)=>{const ul=document.getElementById('restaurants-list');restaurants.forEach(restaurant=>{ul.append(createRestaurantHTML(restaurant))});addMarkersToMap()}
+createRestaurantHTML=(restaurant)=>{const li=document.createElement('li');const image=document.createElement('img');image.className='restaurant-img';image.src=DBHelper.imageUrlForRestaurant(restaurant);li.append(image);const name=document.createElement('h2');name.innerHTML=restaurant.name;li.append(name);image.alt='The image of '+restaurant.name+' restaurant';const neighborhood=document.createElement('p');neighborhood.innerHTML=restaurant.neighborhood;li.append(neighborhood);const address=document.createElement('p');address.innerHTML=restaurant.address;li.append(address);const more=document.createElement('a');more.innerHTML='View Details';more.href=DBHelper.urlForRestaurant(restaurant);li.append(more)
+return li}
+addMarkersToMap=(restaurants=self.restaurants)=>{restaurants.forEach(restaurant=>{const marker=DBHelper.mapMarkerForRestaurant(restaurant,self.map);google.maps.event.addListener(marker,'click',()=>{window.location.href=marker.url});self.markers.push(marker)})}
+    </script>
     <script>
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('sw.js').then(function(reg) {
@@ -65,11 +105,20 @@
         }
 
     </script>
--->
-
-
-
-
+    <script>
+        setTimeout(function() {
+            document.getElementsByTagName("img")[0].setAttribute("class", "democlass");
+            document.getElementsByTagName("img")[1].setAttribute("class", "democlass");
+            document.getElementsByTagName("img")[2].setAttribute("class", "democlass");
+            document.getElementsByTagName("img")[3].setAttribute("class", "democlass");
+            document.getElementsByTagName("img")[4].setAttribute("class", "democlass");
+            document.getElementsByTagName("img")[5].setAttribute("class", "democlass");
+            document.getElementsByTagName("img")[6].setAttribute("class", "democlass");
+            document.getElementsByTagName("img")[7].setAttribute("class", "democlass");
+            document.getElementsByTagName("img")[8].setAttribute("class", "democlass");
+            document.getElementsByTagName("img")[9].setAttribute("class", "democlass");
+        }, 1000);
+    </script>
 </body>
 
 </html>
