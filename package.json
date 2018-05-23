@@ -24,6 +24,7 @@
   "dependencies": {
     "gulp-print": "^5.0.0",
     "gulp-sass": "^4.0.1",
+    "idb": "^2.1.1",
     "layzr.js": "^2.2.2"
   }
 }

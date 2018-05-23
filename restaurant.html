@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
+    <link rel="icon" type="image/png" href="img/logo/favicon.png">
     <link rel="manifest" href="/manifest.json">
     <title>Restaurant Info</title>
     <style>
@@ -459,12 +460,20 @@ button:hover, button:focus {
                 width: -webkit-fill-available;
             }
         }
-        .main-text {
-            margin: 200px;
+        .welcome-text {
+            text-align: center;
             background-color: #edf8ff;
+            padding-top: 108px;
+            padding-bottom: 100px;
+            margin-top: 25px;
         }
         
+        .welcome-text h2 {
+            text-align: center;
+            color: darkslategray
+        }
         
+        /*
         .democlass {
             background-color: #ccc;
             display: block;
@@ -473,6 +482,7 @@ button:hover, button:focus {
             min-height: 248px;
             min-width: 100%;
         }
+        */
 
     </style>
 </head>
@@ -494,8 +504,8 @@ button:hover, button:focus {
         <!-- End nav -->
     </header>
     <!-- End header -->
-    <div class="main-text">
-        <h2 style="text-align: center">Welcome to restaurant info. Scroll for more details</h2>
+    <div class="welcome-text">
+        <h2>Welcome to restaurant info. Scroll for more details</h2>
     </div>
     <!-- Beginning main -->
     <main id="maincontent">
