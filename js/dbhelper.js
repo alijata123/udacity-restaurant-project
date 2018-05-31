@@ -1,7 +1,13 @@
+
 /**
  * Common database helper functions.
  */
 class DBHelper {
+    
+    
+    static fetchRestaurantsData() {
+        
+    }
 
   /**
    * Database URL.
@@ -10,8 +16,10 @@ class DBHelper {
   static get DATABASE_URL() {
     const port = 1337 // Change this to your server port
     return `http://localhost:${port}/restaurants`;
+      
+      
   }
-
+      
   /**
    * Fetch all restaurants.
    */
@@ -28,12 +36,8 @@ class DBHelper {
       }
     };
     xhr.send();
-  }
-    
-    
-    
-    
       
+  }
 
   /**
    * Fetch a restaurant by its ID.
@@ -51,9 +55,11 @@ class DBHelper {
           callback('Restaurant does not exist', null);
         }
       }
-    
     });
+      
+      
   }
+    
 
   /**
    * Fetch restaurants by a cuisine type with proper error handling.
@@ -69,6 +75,7 @@ class DBHelper {
         callback(null, results);
       }
     });
+     
   }
 
   /**
@@ -85,6 +92,7 @@ class DBHelper {
         callback(null, results);
       }
     });
+    
   }
 
   /**
@@ -106,6 +114,7 @@ class DBHelper {
         callback(null, results);
       }
     });
+     
   }
 
   /**
@@ -123,9 +132,8 @@ class DBHelper {
         const uniqueNeighborhoods = neighborhoods.filter((v, i) => neighborhoods.indexOf(v) == i)
         callback(null, uniqueNeighborhoods);
       }
-    });
+    });   
   }
-
   /**
    * Fetch all cuisines with proper error handling.
    */
@@ -142,22 +150,21 @@ class DBHelper {
         callback(null, uniqueCuisines);
       }
     });
-  }
-
+     
+  } 
+    
   /**
    * Restaurant page URL.
    */
   static urlForRestaurant(restaurant) {
     return (`./restaurant.html?id=${restaurant.id}`);
   }
-
   /**
    * Restaurant image URL.
    */
   static imageUrlForRestaurant(restaurant) {
-    return (`/img/${restaurant.photograph}`+ '.webp');
+    return ( `/img/${restaurant.photograph}`+ '.jpg');
   }
-
   /**
    * Map marker for a restaurant.
    */
@@ -171,8 +178,11 @@ class DBHelper {
     );
     return marker;
   }
-
+    
 }
+
+
+
 
 
 

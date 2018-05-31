@@ -17,11 +17,17 @@
   },
   "homepage": "https://github.com/alijata123/udacity-restaurant-project#readme",
   "devDependencies": {
-    "gulp": "^4.0.0",
+    "browser-sync": "^2.24.4",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^5.0.0",
     "gulp-image-optimization": "^0.1.3",
-    "gulp-install": "^1.1.0"
+    "gulp-image-resize": "^0.13.0",
+    "gulp-install": "^1.1.0",
+    "gulp-watch": "^5.0.0"
   },
   "dependencies": {
+    "echo-js": "^1.7.3",
+    "gulp-minify-css": "^1.2.4",
     "gulp-print": "^5.0.0",
     "gulp-sass": "^4.0.1",
     "idb": "^2.1.1",

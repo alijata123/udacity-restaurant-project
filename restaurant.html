@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" src="//normalize-css.googlecode.com/svn/trunk/normalize.css" />
     <link rel="icon" type="image/png" href="img/logo/favicon.png">
     <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="css/style.css">
     <title>Restaurant Info</title>
+    <!--
     <style>
         html {
             direction: inline-table;
@@ -223,7 +226,6 @@
             max-width: 100%;
             min-height: 248px;
             min-width: 100%;
-            
         }
         
         #restaurants-list li h1 {
@@ -460,6 +462,7 @@ button:hover, button:focus {
                 width: -webkit-fill-available;
             }
         }
+        
         .welcome-text {
             text-align: center;
             background-color: #edf8ff;
@@ -473,18 +476,9 @@ button:hover, button:focus {
             color: darkslategray
         }
         
-        /*
-        .democlass {
-            background-color: #ccc;
-            display: block;
-            margin: 0;
-            max-width: 100%;
-            min-height: 248px;
-            min-width: 100%;
-        }
-        */
 
     </style>
+    -->
 </head>
 
 <body class="inside">
@@ -535,6 +529,13 @@ button:hover, button:focus {
     <footer id="footer">
         Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
     </footer>
+    
+    <script>
+        setTimeout(function() {
+            document.getElementById("restaurant-img").setAttribute("src", "/img/1.webp");
+        }, 2000);
+    </script>
+    
     <!-- End footer -->
     <script type="text/javascript" src="js/dbhelper.js" async></script>
     <!-- Main javascript file -->
