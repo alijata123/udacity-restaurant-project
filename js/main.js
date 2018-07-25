@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 /**
  * Fetch all neighborhoods and set their HTML.
  */
-const fetchNeighborhoods = () => {
+fetchNeighborhoods = () => {
   DBHelper.fetchNeighborhoods((error, neighborhoods) => {
     if (error) { // Got an error
       console.error(error);
@@ -29,7 +29,7 @@ const fetchNeighborhoods = () => {
 /**
  * Set neighborhoods HTML.
  */
-const fillNeighborhoodsHTML = (neighborhoods = self.neighborhoods) => {
+fillNeighborhoodsHTML = (neighborhoods = self.neighborhoods) => {
   const select = document.getElementById('neighborhoods-select');
   neighborhoods.forEach(neighborhood => {
     const option = document.createElement('option');
@@ -42,7 +42,7 @@ const fillNeighborhoodsHTML = (neighborhoods = self.neighborhoods) => {
 /**
  * Fetch all cuisines and set their HTML.
  */
-const fetchCuisines = () => {
+fetchCuisines = () => {
   DBHelper.fetchCuisines((error, cuisines) => {
     if (error) { // Got an error!
       console.error(error);
@@ -56,7 +56,7 @@ const fetchCuisines = () => {
 /**
  * Set cuisines HTML.
  */
-const fillCuisinesHTML = (cuisines = self.cuisines) => {
+fillCuisinesHTML = (cuisines = self.cuisines) => {
   const select = document.getElementById('cuisines-select');
 
   cuisines.forEach(cuisine => {
@@ -109,7 +109,7 @@ const updateRestaurants = () => {
 /**
  * Clear current restaurants, their HTML and remove their map markers.
  */
-const resetRestaurants = (restaurants) => {
+resetRestaurants = (restaurants) => {
   // Remove all restaurants
   self.restaurants = [];
   const ul = document.getElementById('restaurants-list');
@@ -125,7 +125,7 @@ const resetRestaurants = (restaurants) => {
 /**
  * Create all restaurants HTML and add them to the webpage.
  */
-const fillRestaurantsHTML = (restaurants = self.restaurants) => {
+fillRestaurantsHTML = (restaurants = self.restaurants) => {
   const ul = document.getElementById('restaurants-list');
   restaurants.forEach(restaurant => {
     ul.append(createRestaurantHTML(restaurant));
@@ -137,23 +137,39 @@ const fillRestaurantsHTML = (restaurants = self.restaurants) => {
  * Create restaurant HTML.
  */
 
-const createRestaurantHTML = (restaurant) => {
+createRestaurantHTML = (restaurant) => {
   const li = document.createElement('li');
+
   const image = document.createElement('img');
+  /* add alt text here */
+  image.alt = 'The image of ' + restaurant.name + ' restaurant';
   image.className = 'restaurant-img';
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
-  
+
   li.append(image);
 
   const name = document.createElement('h2');
   name.innerHTML = restaurant.name;
   li.append(name);
 
-        
-  /* add alt text here */
-  image.alt = 'The image of ' + restaurant.name + ' restaurant';
-    
-    
+  /**********************************************/
+  const favourite = document.createElement('button');
+  favourite.innerHTML = '❤';
+  favourite.classList.add("fav_btn");
+  //change fav status on click
+  favourite.onclick = function() {
+    const isFavNow = !restaurant.is_favorite;
+    DBHelper.updateFavouriteStatus(restaurant.id, isFavNow);
+    restaurant.is_favorite = !restaurant.is_favorite
+    changeFavElementClass(favourite, restaurant.is_favorite)
+  };
+  changeFavElementClass(favourite, restaurant.is_favorite)
+  li.append(favourite);
+  
+  
+
+  
+  
   const neighborhood = document.createElement('p');
   neighborhood.innerHTML = restaurant.neighborhood;
   li.append(neighborhood);
@@ -170,10 +186,32 @@ const createRestaurantHTML = (restaurant) => {
   return li
 }
 
+
+/************************************* */
+changeFavElementClass = (el, fav) => {
+  if (!fav) {
+    el.classList.remove('favorite_yes');
+    el.classList.add('favorite_no');
+    el.setAttribute('aria-label', 'mark as favorite');
+
+  } else {
+    console.log('toggle yes upd');
+    el.classList.remove('favorite_no');
+    el.classList.add('favorite_yes');
+    el.setAttribute('aria-label', 'remove as favorite');
+
+  }
+}
+
+
+
+
+
+
 /**
  * Add markers for current restaurants to the map.
  */
-const addMarkersToMap = (restaurants = self.restaurants) => {
+addMarkersToMap = (restaurants = self.restaurants) => {
   restaurants.forEach(restaurant => {
     // Add marker to the map
     const marker = DBHelper.mapMarkerForRestaurant(restaurant, self.map);
