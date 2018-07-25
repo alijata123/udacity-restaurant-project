@@ -7,84 +7,6 @@
 
 class DBHelper {
 
-  /*
-  static restaurantsDB(){
-    //check for support
-    if (!('indexedDB' in window)) {
-        console.log('This browser doesn\'t support IndexedDB');
-        return;
-    }
-
-    var dbPromise = idb.open('db1', 1, function(upgradeDb) {
-        if (!upgradeDb.objectStoreNames.contains('restaurants')) {
-            var peopleOS = upgradeDb.createObjectStore('restaurants', {
-                keyPath: 'name'
-            });
-            peopleOS.createIndex('cuisine_type', 'cuisine_type', {
-                unique: false
-            });
-            peopleOS.createIndex('address', 'address', {
-                unique: true
-            });
-            peopleOS.createIndex('reviews', 'reviews', {
-                unique: false
-            });
-            peopleOS.createIndex('operating_hours', 'operating_hours', {
-                unique: false
-            });
-            
-        }
-
-    });
-    dbPromise.then(function(db) {
-        var tx = db.transaction('restaurants', 'readwrite');
-        var store = tx.objectStore('restaurants');
-        
-        var items = [{
-                address: "444-44-4444",
-                name: "Mission Chinese Food",
-                cuisine_type: "Asian",
-                operating_hours: "09:00-21:00",
-                reviews: "awesome restaurant"
-            },
-            {
-                address: "555-55-5555",
-                name: "Emily",
-                cuisine_type: "Pizza",
-                operating_hours: "09:00-21:00",
-                reviews: "great restaurant"
-            }
-        ];
-        
-        return Promise.all(restaurants.map(function(item) {
-            console.log('Adding item: ', item);
-            return store.add(item);
-        })).catch(function(e) {
-            tx.abort();
-            console.log(e);
-        }).then(function() {
-            console.log('All items added successfully!');
-            
-        });
-        
-    });           
-};
-    */
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-
 /**
    * Database URL.
    * Change this to restaurants.json file location on your server.
@@ -94,8 +16,6 @@ class DBHelper {
     return `http://localhost:${port}/restaurants`;       
   }
     
-  
-
   
   /**
    * Fetch all restaurants.
