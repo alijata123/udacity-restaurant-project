@@ -1,4 +1,6 @@
-let cache_name = "v1";
+
+
+let cache_name = "version-1";
 
 let delete_caches = function (event) {
     return event.waitUntil(
@@ -20,16 +22,15 @@ self.addEventListener('install', function (event) {
               .then(function (cache) {
                   return cache.addAll(
                       [
-                          '/',
-                          '/index.html',
-                          '/sw.js',
-                          '/js/main.js',
-                          '/css/styles.css',
-                          '/img/',
-                          '/restaurant.html',
-                          '/data/restaurants.json',
-                          'restaurant.html?id=1',
-                          'restaurant.html?id=2',
+                        'index.html',
+                        'img/logo/favicon.png',
+                        '/js/dbhelper.js',
+                        '/js/idb.js',
+                        '/js/main.js',
+                        '/js/restaurant_info.js',
+                        '/css',
+                        'restaurant.html?id=1',
+                        'restaurant.html?id=2',
                           'restaurant.html?id=3',
                           'restaurant.html?id=4',
                           'restaurant.html?id=5',
@@ -38,6 +39,27 @@ self.addEventListener('install', function (event) {
                           'restaurant.html?id=8',
                           'restaurant.html?id=9',
                           'restaurant.html?id=10'
+                        
+                        
+                        /*
+                        '/',
+                        '/js/main.js',
+                        '/css/styles.css',
+                        '/img/',
+                        '/restaurant.html',
+                        'https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js',
+                        'restaurant.html?id=1',
+                        'restaurant.html?id=2',
+                        'restaurant.html?id=3',
+                        'restaurant.html?id=4',
+                        'restaurant.html?id=5',
+                        'restaurant.html?id=6',
+                        'restaurant.html?id=7',
+                        'restaurant.html?id=8',
+                        'restaurant.html?id=9',
+                        'restaurant.html?id=10'
+                        */
+                         
                       ]
                   );
               })

@@ -52,19 +52,6 @@ a:focus,
 a:hover {
   text-decoration: none; }
 
-#footer,
-#map,
-nav {
-  width: 100%; }
-
-html {
-  direction: inline-table;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap; }
-
 body,
 p,
 td,
@@ -197,16 +184,19 @@ nav h1 a {
   font-weight: 400;
   line-height: 1;
   margin: 0 20px 0 163px;
-  padding-top: 10px; }
+  padding-top: 10px;
+ }
 
 .filter-options select {
   background-color: #fff;
   border: 1px solid #fff;
   font-size: 11pt;
-  height: 30px;
+  height: 40px;
   margin: 10px;
   padding: 0 10px;
-  width: 200px; }
+  width: 200px;
+  border-radius: 3px;
+ }
 
 #filterText {
   font-weight: 600; }
@@ -233,7 +223,6 @@ nav h1 a {
   display: block;
   margin: 0;
   max-width: 100%;
-  min-height: 248px;
   min-width: 100%; }
 
 #restaurants-list li h1 {
@@ -381,19 +370,19 @@ a.skip-link:focus {
   restaurant-address {
     margin-left: 5px; } }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 653px) {
   .filter-options {
-    width: -webkit-fill-available;
-    width: -moz-available;
-    width: fill-available;
     height: 160px;
     background-color: #3397DB;
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-    padding-left: calc((100% - 275px)/ 2);
-    display: grid; }
+    padding-left: calc((100% - 222px)/ 2);
+    display: grid;
+   }
+
   #restaurants-list {
+    width: 100%;
     list-style: none;
     margin: 0;
     padding: 40px 0 25px;
@@ -411,7 +400,10 @@ a.skip-link:focus {
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     display: inline-table; }
   .filter-options h2 {
-    margin: 0 20px 0 8px; } }
+    margin: 0 20px 0 8px;
+   }
+
+  }
 
 @media only screen and (max-width: 1011px) {
   .inside #footer {
@@ -419,12 +411,19 @@ a.skip-link:focus {
     width: -moz-available;
     width: fill-available; } }
 
-.welcome-text {
-  text-align: center;
-  background-color: #edf8ff;
-  padding-top: 100px;
-  padding-bottom: 100px; }
+.collapsible {
+  margin-left: calc((100% - 126px)/ 2);
+  margin-top: 50px;
+  background-color: powderblue;
+  height: 41px;
+  border-radius: 5px;
+  margin-bottom: 50px;
+}
+.collapsible:hover {
+ background-color: aliceblue;
+}
 
-.welcome-text h2 {
-  text-align: center;
-  color: #2f4f4f; }
+#filterText {
+  font-size: 23px;
+  margin-left: 36px;
+}

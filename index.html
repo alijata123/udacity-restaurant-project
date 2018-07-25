@@ -10,447 +10,66 @@
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="css/style.css">
     <title>Restaurant Home Page</title>
-    <!--
+
     <style>
-        body,
-        td,
-        th,
-        p {
-            color: black;
-            line-height: 1.5
-        }
-        
-        body {
-            background-color: #fdfdfd;
-            margin: 0;
-            position: relative
-        }
-        
-        ul,
-        li {
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 10pt;
-            color: #333
-        }
-        
-        a {
-            color: orange;
-            text-decoration: none
-        }
-        
-        a:hover,
-        a:focus {
-            color: #3397db;
-            text-decoration: none
-        }
-        
-        a img {
-            border: none 0 #fff
-        }
-        
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            font-family: Arial, Helvetica, sans-serif;
-            margin: 0 0 20px
-        }
-        
-        article,
-        aside,
-        canvas,
-        details,
-        figcaption,
-        figure,
-        footer,
-        header,
-        hgroup,
-        menu,
-        nav,
-        section {
-            display: block
-        }
-        
-        #footer {
-            background-color: #444;
-            color: #fff;
-            font-size: 8pt;
-            letter-spacing: 1px;
-            padding: 25px;
-            text-align: center;
-            text-transform: uppercase
-        }
-        
-        nav {
-            width: 100%;
-            height: 80px;
-            background-color: #252831;
-            text-align: center
-        }
-        
-        nav h1 {
-            margin: auto;
-            padding-top: 23px
-        }
-        
-        nav h1 a {
-            color: #fff;
-            font-size: 14pt;
-            font-weight: 200;
-            text-transform: uppercase
-        }
-        
-        #breadcrumb {
-            padding: 10px 40px 16px;
-            list-style: none;
-            background-color: #eee;
-            font-size: 17px;
-            margin: 0;
-            width: -webkit-fill-available
-        }
-        
-        #breadcrumb li {
-            display: inline
-        }
-        
-        #breadcrumb li+li:before {
-            padding: 8px;
-            color: black;
-            content: "/\00a0"
-        }
-        
-        #breadcrumb li a {
-            color: black;
-            text-decoration: none;
-            font-weight: 700
-        }
-        
-        #breadcrumb li a:hover {
-            color: #01447e;
-            text-decoration: underline
-        }
-        
-        #map {
-            height: 400px;
-            width: 100%;
-            background-color: #ccc
-        }
-        
-        .filter-options {
-            width: -webkit-fill-available;
-            height: 100px;
-            margin-top: 0;
-            padding-top: 50px;
-            background-color: #3397DB;
-            align-items: center;
-            padding-left: calc((100% - 512px)/2)
-        }
-        
-        .filter-options h2 {
-            color: black;
-            font-size: 1.2rem;
-            font-weight: 400;
-            line-height: 1;
-            margin: 0 20px 0 163px;
-            padding-top: 10px
-        }
-        
-        .filter-options select {
-            background-color: white;
-            border: 1px solid #fff;
-            font-family: Arial, sans-serif;
-            font-size: 11pt;
-            height: 30px;
-            letter-spacing: 0;
-            margin: 10px;
-            padding: 0 10px;
-            width: 200px
-        }
-        
-        #filterText {
-            font-weight: 600
-        }
-        
-        #restaurants-list {
-            background-color: #f3f3f3;
-            list-style: outside none none;
-            margin: 50px;
-            padding: 30px 15px 60px;
-            text-align: center
-        }
-        
-        #restaurants-list li {
-            background-color: #fff;
-            border: 2px solid #ccc;
-            font-family: Arial, sans-serif;
-            margin: 15px;
-            min-height: 380px;
-            padding: 0 30px 25px;
-            text-align: left;
-            width: 270px;
-            display: inline-table;
-            padding-top: 20px;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .19);
-            display: inline-table
-        }
-        
-        #restaurants-list .restaurant-img {
-            background-color: #ccc;
-            /* display: none;*/
-            margin: 0;
-            max-width: 100%;
-            min-height: 248px;
-            min-width: 100%
-        }
-        
-        #restaurants-list li h1 {
-            color: black;
-            font-family: Arial, sans-serif;
-            font-size: 14pt;
-            font-weight: 200;
-            letter-spacing: 0;
-            line-height: 1.3;
-            margin: 20px 0 10px;
-            text-transform: uppercase
-        }
-        
-        #restaurants-list p {
-            margin: 0;
-            font-size: 11pt
-        }
-        
-        #restaurants-list li a {
-            background-color: orange;
-            color: black;
-            font-weight: 700;
-            display: inline-block;
-            font-size: 10pt;
-            margin: 15px 0 0;
-            padding: 8px 30px 10px;
-            text-align: center;
-            text-decoration: none;
-            text-transform: uppercase
-        }
-        
-        .inside header {
-            top: 0;
-            width: 100%
-        }
-        
-        #map-container {
-            width: 100%
-        }
-        
-        #map {
-            display: flex
-        }
-        
-        .inside #footer {
-            position: absolute;
-            width: -webkit-fill-available
-        }
-        
-        #restaurant-name {
-            color: black;
-            font-family: Arial, sans-serif;
-            font-size: 20pt;
-            font-weight: 200;
-            letter-spacing: 0;
-            margin: 15px 0 30px;
-            text-transform: uppercase;
-            line-height: 1.1;
-            margin-left: calc((100% - 260px)/2)
-        }
-        
-        #restaurant-img {
-            width: 100%
-        }
-        
-        #restaurant-address {
-            font-size: 12pt;
-            margin: 10px 0;
-            padding-left: 25%
-        }
-        
-        #restaurant-cuisine {
-            background-color: #333;
-            color: #ddd;
-            font-size: 12pt;
-            font-weight: 300;
-            letter-spacing: 10px;
-            margin: 0 0 20px;
-            padding: 2px 0;
-            text-align: center;
-            text-transform: uppercase;
-            width: 100%
-        }
-        
-        #restaurant-container {
-            border-bottom: 1px solid #fff;
-            width: 50%
-        }
-        
-        #reviews-container {
-            width: 50%;
-            border-top: 1px solid #fff
-        }
-        
-        #reviews-container h3 {
-            color: black;
-            font-size: 24pt;
-            font-weight: 300;
-            letter-spacing: -1px;
-            padding-bottom: 1pt;
-            margin-left: calc((100% - 50px)/2);
-            padding-top: 4px
-        }
-        
-        #reviews-list {
-            margin: 0;
-            padding: 0
-        }
-        
-        #reviews-list li {
-            background-color: #fff;
-            border: 2px solid #f3f3f3;
-            list-style-type: none;
-            margin: 0 0 30px;
-            padding: 20px 0 20px 5px;
-            width: 100%
-        }
-        
-        #reviews-list li p {
-            margin: 0 0 10px
-        }
-        
-        #restaurant-hours {
-            padding-left: 25%
-        }
-        
-        #restaurant-hours td {
-            color: #666
-        }
-        
-        a.skip-link {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            background: #bf1722;
-            color: white;
-            padding: 8px;
-            z-index: 100
-        }
-        
-        a.skip-link:focus {
-            top: 0;
-            border: 1px solid white
-        }
-        
-         :focus {
-            outline: 2px solid #fd3b67;
-            border: 1px solid white
-        }
-        
-        @media screen and (max-width:800px) {
-            .inside #map-container {
-                background: #f3f3f3 none repeat scroll 0 0;
-                height: 87%;
-                right: 0;
-                top: 80px;
-                width: 100%
-            }
-            #restaurant-container,
-            #reviews-container {
-                border-bottom: 1px solid #fff;
-                padding: 140px 0 30px 0;
-                width: 100%
-            }
-        }
-        
-        @media screen and (min-width:516) {
-            #reviews-container {
-                border-bottom: 1px solid #d9d9d9;
-                padding: 140px 0 30px;
-                width: 100%
-            }
-            #reviews-container h2 {
-                padding-left: 5px
-            }
-            restaurant-address {
-                margin-left: 5px
-            }
-        }
-        
-        @media screen and (max-width:588px) {
-            .filter-options {
-                width: -webkit-fill-available;
-                height: 160px;
-                background-color: #3397DB;
-                align-items: center;
-                padding-left: calc((100% - 200px)/2);
-                display: inline-grid
-            }
-            #restaurants-list {
-                background-color: #f3f3f3;
-                list-style: outside none none;
-                margin: 0;
-                padding: 40px 0 25px;
-                text-align: center
-            }
-            #restaurants-list li {
-                background-color: #fff;
-                border: 2px solid #ccc;
-                font-family: Arial, sans-serif;
-                margin: 15px;
-                min-height: 380px;
-                padding: 0 20px 25px;
-                text-align: left;
-                width: 270px;
-                display: inline-table;
-                padding-top: 20px;
-                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .19);
-                display: inline-table
-            }
-            .filter-options h2 {
-                margin: 0 20px 0 8px
-            }
-        }
-        
-        @media only screen and (max-width:1011px) {
-            .inside #footer {
-                width: -webkit-fill-available
-            }
-        }
-        
-        .welcome-text {
-            text-align: center;
-            background-color: #edf8ff;
-            padding-top: 100px;
-            padding-bottom: 100px
-        }
-        
-        .welcome-text h2 {
-            text-align: center;
-            color: darkslategray
-        }
-        
-        .democlass {
-            background-color: #ccc;
-            display: block;
-            margin: 0;
-            max-width: 100%;
-            min-height: 248px;
-            min-width: 100%
-        }
-        
-        #map-container {
-            border: solid;
+        #lazyload {
+            display: none;
         }
 
+        #map-container {
+            display: none;
+        }
+
+        /* toggle button*/
+
+        .collapsible {
+            margin: 50px 0 50px;
+            margin-left: calc((100% - 142px)/ 2);
+            color: white;
+            font-weight: bold;
+            background-color: #3397DB;
+            padding: 10px 5px 10px 5px;
+            border-radius: 3px;
+            border-color: darkblue;
+        }
+
+        .favorite_yes {
+            color: #d73030;
+        }
+
+        .fav_btn {
+            align-self: flex-start;
+            margin-left: 3px;
+            font-size: 20px;
+            background: white;
+            border: 1.3px solid grey;
+            border-radius: 50%;
+            height: 40px;
+            width: 40px;
+
+        }
+
+        .fav_btn:hover {
+            box-shadow: 0px 1px 5px #777;
+        }
+
+        .favorite_yes {
+            color: #d73030;
+        }
+
+        .favorite_yes:hover {
+            color: #4c4c4c;
+        }
+
+        .favorite_no:hover {
+            color: #d73030;
+        }
+
+        .favorite_no {
+            color: #4c4c4c;
+        }
     </style>
-    -->
+
 
 </head>
 
@@ -458,126 +77,126 @@
     <header>
         <a href="#restaurants-list" class="skip-link" tabindex="1">Skip to Restaurants List</a>
         <nav>
-            <h1><a href="/" tabindex="2">Restaurants App </a></h1>
+            <h1>
+                <a href="/" tabindex="2">Restaurants App </a>
+            </h1>
         </nav>
     </header>
     <main id="maincontent">
         <section>
-            <div class="welcome-text">
-                <h2>Welcome to Restaurants Application</h2>
-                <h3>Here you will find restaurants located near you, including their working hours, reviews, and locations using goolge maps.</h3>
-            </div>
+            
             <div class="filter-options">
                 <label for="filterRestaurant" id="filterText">Filter Results</label>
                 <select id="neighborhoods-select" aria-label="filterNeighborhoods" name="neighborhoods" onchange="updateRestaurants()" tabindex="3">
-             <option value="all">All Neighborhoods</option>
-        </select>
+                    <option value="all">All Neighborhoods</option>
+                </select>
                 <select id="cuisines-select" aria-label="filterCuisines" name="cuisines" onchange="updateRestaurants()" tabindex="4">
-              <option value="all">All Cuisines</option>
-        </select>
+                    <option value="all">All Cuisines</option>
+                </select>
             </div>
 
-            <div>
+            <button aria-label="show map" class="collapsible">Toggle Google Map</button>
+            <section id="map-container" class="content">
+                <div tabindex="-1" id="map" role="application" aria-hidden="true"></div>
+            </section>
+
+            <div id="lazyload">
                 <ul id="restaurants-list" tabindex="5"></ul>
             </div>
+        </section>
 
-        </section>
-        <section id="map-container">
-            <div tabindex="-1" id="map" role="application" aria-hidden="true"></div>
-        </section>
     </main>
     <footer id="footer">
-        Copyright (c) 2017 <a href="/"><strong>Restaurant Reviews</strong></a> All Rights Reserved.
+        Copyright (c) 2017
+        <a href="/">
+            <strong>Restaurant Reviews</strong>
+        </a> All Rights Reserved.
     </footer>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC7lOMI74flAEB9s-oa_NHDQECTv3HbCMo&libraries=places&callback=initMap"></script>
     <script src="js/restaurant_info.js"></script>
     <script src="js/dbhelper.js"></script>
     <script src="js/main.js"></script>
-    <script src="idb/lib/idb.js"></script>
-    <script src="lazysizes.min.js"></script>
-      
-    <script>
-       const restaurantsDB = () => {
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/idb.js"></script>
+    <!-- <script src="dist/js/all.js"></script>-->
+
+    <script>
+        /*
+        //register indexedDb with promises
+        function createAndUpdateDB() {
+            'use strict';
             //check for support
+
             if (!('indexedDB' in window)) {
                 console.log('This browser doesn\'t support IndexedDB');
                 return;
             }
-
-            var dbPromise = idb.open('db1', 1, function(upgradeDb) {
+            var dbPromise = idb.open('restaurant-reviews', 1, function (upgradeDb) {
                 if (!upgradeDb.objectStoreNames.contains('restaurants')) {
-                    var peopleOS = upgradeDb.createObjectStore('restaurants', {
-                        keyPath: 'name'
+                    var restaurantsStore = upgradeDb.createObjectStore('restaurants', {
+                        keyPath: 'id'
                     });
-                    peopleOS.createIndex('cuisine_type', 'cuisine_type', {
+
+                    restaurantsStore.createIndex('cuisine_type', 'cuisine_type', {
                         unique: false
                     });
-                    peopleOS.createIndex('address', 'address', {
+                    restaurantsStore.createIndex('address', 'address', {
                         unique: true
                     });
-                    peopleOS.createIndex('reviews', 'reviews', {
-                        unique: false
-                    });
-                    peopleOS.createIndex('operating_hours', 'operating_hours', {
-                        unique: false
-                    });
-                    
                 }
-
             });
-           
-           
+            var items;
+            DBHelper.fetchRestaurants((error, restaurants) => {
+                if (error) {
+                    console.log('error on retrieving restaurants data!');
+                } else {
+                    items = restaurants;
+                }
+            });
 
-            dbPromise.then(function(db) {
+            dbPromise.then(function (db) {
                 var tx = db.transaction('restaurants', 'readwrite');
                 var store = tx.objectStore('restaurants');
-                var items = [{
-                        address: "444-44-4444",
-                        name: "Mission Chinese Food",
-                        cuisine_type: "Asian",
-                        operating_hours: "09:00-21:00",
-                        reviews: "awesome restaurant"
-                    },
-                    {
-                        address: "555-55-5555",
-                        name: "Emily",
-                        cuisine_type: "Pizza",
-                        operating_hours: "09:00-21:00",
-                        reviews: "great restaurant"
-                    }
-                ];
-
-
-                return Promise.all(items.map(function(item) {
-                    console.log('Adding item: ', item);
-                    return store.add(item);
-                })).catch(function(e) {
-                    tx.abort();
-                    console.log(e);
-                }).then(function() {
-                    console.log('All items added successfully!');
+                items.forEach(item => {
+                    store.put(item);
                 });
-                
-                
-            });         
-           return restaurantsDB();
-        };
+                return tx.complete;
+            }).then(function () {
+                console.log('Store updated');
+            });
+        }
+        createAndUpdateDB();
+        */
+
+        // load images after 1 sec
+        setTimeout(function () {
+            document.getElementById("lazyload").style.display = "block";
+        }, 1000);
         
-        
-        
-    </script>
-<!--
-    <script>
+        /*
+        // service worker invocation
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('sw.js').then(function(reg) {
+            navigator.serviceWorker.register('sw.js').then(function (reg) {
                 console.log('Yey!', reg);
-            }).catch(function(err) {
+            }).catch(function (err) {
                 console.log('Boo!', err);
             });
         }
+        */
 
+        // toogle button for show google map
+        $(document).ready(function () {
+            $(".collapsible").click(function () {
+                $(".content").toggle();
+            });
+        });
     </script>
--->
+
+
+
 </body>
 </html>
+
+
+
