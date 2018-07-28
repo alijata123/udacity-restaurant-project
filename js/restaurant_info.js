@@ -45,7 +45,7 @@ fetchRestaurantFromURL = (callback) => {
       self.restaurant = restaurant;
       if (!restaurant) {
         console.error(error);
-        return;
+        return DBHelper.fetchReviewsApiById(id);
       }
       fillRestaurantHTML();
       callback(null, restaurant)
@@ -78,11 +78,11 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   }
   // fill reviews
   //fillReviewsHTML();
-  /************************ */
+  /************************/ 
   console.log('populate reviews');
-  DBHelper.fetchReviewsByRestId(restaurant.id)
+  DBHelper.fetchReviewsApiById(restaurant.id)
     .then(reviews => fillReviewsHTML(reviews))
-
+ 
 
 }
 
@@ -123,7 +123,7 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
   if (!reviews) {
     const noReviews = document.createElement('p');
     /************ */
-    noReviews.id = 'no-review';
+    //noReviews.id = 'no-review';
     /*^^^^*/
     noReviews.innerHTML = 'No reviews yet!';
     container.appendChild(noReviews);
@@ -165,6 +165,11 @@ createReviewHTML = (review) => {
   const comments = document.createElement('p');
   comments.innerHTML = review.comments;
   li.appendChild(comments);
+
+  const deleteButton = document.createElement('button');
+  deleteButton.innerHTML = '&#10006; Delete';
+  deleteButton.classList.add("del_btn");
+  li.appendChild(deleteButton);
 
   return li;
 }

@@ -14,10 +14,53 @@ class DBHelper {
   static get DATABASE_URL() {
     const port = 1337 // Change this to your server port
     return `http://localhost:${port}/restaurants`;
-    
+  }
+
+
+  static get REVIEWS_DATABASE_URL() {
+    const port = 1337 // Change this to your server port
+    return `http://localhost:${port}/reviews`;
     //`http://localhost:${port}/`;     
   }
 
+/*****************************************' */
+  static fetchReviewsApiById(id) {
+    // fetch all reviews with proper error handling.
+    // Using fetch
+    return fetch(DBHelper.REVIEWS_DATABASE_URL+'/?restaurant_id='+id, {
+      method: 'GET'
+    })
+    .then(response => {
+      let json = response.json()
+      if(!json) {
+        return Promise.reject(new Error('Restaurant not found!!!'));
+      }
+      return json;
+    })
+    .catch(error => { 
+      console.error(error)
+    });
+  }
+
+
+  /****************************************''
+  // Delete reviews from restaurants
+  static deleteReviews(id) {
+    return fetch(DBHelper.REVIEWS_DATABASE_URL+'http://localhost:1337/reviews/?id='+id, {
+      method: 'DELETE'
+    })
+    .then(response => {
+      let json = response.json()
+      if (!json){
+        return Promise.reject(new Error('Review not found!!!'));
+      }
+      return json;
+    })
+    .catch(error => {
+      console.log(error)
+    });
+  }
+ */
 
 
   /**********************************' */
@@ -39,12 +82,28 @@ class DBHelper {
 
 
 
+/************************************ 
+  static fetchRestaurants() {
+    return this.dbPromise()
+      .then(db => {
+        const tx = db.transaction('restaurants');
+        const restaurantStore = tx.objectStore('restaurants');
+        return restaurantStore.getAll();
+      })
+      .then(restaurants => {
+        if (restaurants.length !== 0) {
+          return Promise.resolve(restaurants);
+        }
+        return this.fetchAndCacheRestaurants();
+      })
+  }
+*/
+
+
 
     
   
-  /**
-   * Fetch all restaurants.
-   */
+  //Fetch all restaurants.
   static fetchRestaurants(callback) {
     let xhr = new XMLHttpRequest();
     xhr.open('GET', DBHelper.DATABASE_URL);
@@ -60,6 +119,9 @@ class DBHelper {
     xhr.send(); 
 
   }
+
+
+
 
   /************************************************ */
   static fetchAndCacheRestaurants() {
@@ -267,7 +329,7 @@ class DBHelper {
   static sendDataWhenOnline(offline_obj) {
     console.log('Offline OBJ', offline_obj);
     localStorage.setItem('data', JSON.stringify(offline_obj.data));
-    console.log(`Local Storage: ${offline_obj.object_type} stored`);
+    alert(`Success: Your ${offline_obj.object_type} was stored in offline mode!`);
     window.addEventListener('online', (event) => {
       console.log('Browser: Online again!');
       let data = JSON.parse(localStorage.getItem('data'));
@@ -283,7 +345,7 @@ class DBHelper {
           DBHelper.addReview(offline_obj.data);
         }
 
-        console.log('LocalState: data sent to api');
+        console.log('Data sent to API');
 
         localStorage.removeItem('data');
         console.log(`Local Storage: ${offline_obj.object_type} removed`);
@@ -335,6 +397,7 @@ class DBHelper {
     });
   }
 
+
   static getStoredObjectById(table, idx, id) {
     return this.dbPromise()
       .then(function(db) {
@@ -346,48 +409,13 @@ class DBHelper {
       });
   }
 
-  static fetchReviewsByRestId(id) {
-    return fetch(`${DBHelper.DATABASE_URL}reviews/?restaurant_id=${id}`)
-      .then(response => response.json())
-      .then(reviews => {
-        this.dbPromise()
-          .then(db => {
-            if (!db) return;
+ 
 
-            let tx = db.transaction('reviews', 'readwrite');
-            const store = tx.objectStore('reviews');
-            if (Array.isArray(reviews)) {
-              reviews.forEach(function(review) {
-                store.put(review);
-              });
-            } else {
-              store.put(reviews);
-            }
-          });
-        console.log('revs are: ', reviews);
-        return Promise.resolve(reviews);
-      })
-      .catch(error => {
-        return DBHelper.getStoredObjectById('reviews', 'restaurant', id)
-          .then((storedReviews) => {
-            console.log('looking for offline stored reviews');
-            return Promise.resolve(storedReviews);
-          })
-      });
-  }
+ 
 
 
 
-
-
-
-
-    
 }
-
-
-
-
 
 
 

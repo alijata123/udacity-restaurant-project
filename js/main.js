@@ -142,7 +142,7 @@ createRestaurantHTML = (restaurant) => {
 
   const image = document.createElement('img');
   /* add alt text here */
-  image.alt = 'The image of ' + restaurant.name + ' restaurant';
+  image.alt = `The image of ${restaurant.name}'s restaurant`;
   image.className = 'restaurant-img';
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
 
@@ -154,7 +154,7 @@ createRestaurantHTML = (restaurant) => {
 
   /**********************************************/
   const favourite = document.createElement('button');
-  favourite.innerHTML = '❤';
+  favourite.innerHTML = '&#9733;';
   favourite.classList.add("fav_btn");
   //change fav status on click
   favourite.onclick = function() {
@@ -165,6 +165,7 @@ createRestaurantHTML = (restaurant) => {
   };
   changeFavElementClass(favourite, restaurant.is_favorite)
   li.append(favourite);
+  /*^^^^^^^^^^^^^^^^^^^^^*/
   
   
 

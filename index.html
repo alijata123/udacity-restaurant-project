@@ -24,14 +24,19 @@
 
         .collapsible {
             margin: 50px 0 50px;
-            margin-left: calc((100% - 142px)/ 2);
+            margin-left: calc((100% - 155px)/ 2);
+            width: 150px;
             color: white;
             font-weight: bold;
-            background-color: #d73030;
+            background-color: #2fbebd;
             padding: 10px 5px 10px 5px;
             border-radius: 3px;
             border-color: black;
         }
+        .collapsible:hover {
+            background-color: #009688;
+        }
+        
 
         .favorite_yes {
             color: #d73030;
@@ -39,10 +44,10 @@
 
         .fav_btn {
             align-self: flex-start;
-            margin-left: 3px;
-            font-size: 20px;
+            margin-bottom: 10px;
+            font-size: 25px;
             background: white;
-            height: 40px;
+            height: 45px;
             width: 40px;
 
         }
@@ -55,21 +60,10 @@
             color: #fd3b67;
         }
 
-        .favorite_yes:hover {
-            color: #959595;
-        }
-
-        .favorite_no:hover {
-            color: #959595;
-        }
-
         .favorite_no {
             color: #959595;
         }
-
-        .collapsible:hover {
- background-color: #124187;
-}
+        
     </style>
 
 
@@ -80,13 +74,13 @@
         <a href="#restaurants-list" class="skip-link" tabindex="1">Skip to Restaurants List</a>
         <nav>
             <h1>
-                <a href="/" tabindex="2">Restaurants App </a>
+                <a href="/" tabindex="2">Restaurants Reviews</a>
             </h1>
         </nav>
     </header>
     <main id="maincontent">
-        <section>
-            
+        <section style="width: -webkit-fill-available;">
+
             <div class="filter-options">
                 <!--<label for="filterRestaurant" id="filterText">Filter Results</label>-->
                 <select id="neighborhoods-select" aria-label="filterNeighborhoods" name="neighborhoods" onchange="updateRestaurants()" tabindex="3">
@@ -124,7 +118,7 @@
     <!-- <script src="dist/js/all.js"></script>-->
 
     <script>
-        /*
+
         //register indexedDb with promises
         function createAndUpdateDB() {
             'use strict';
@@ -148,6 +142,7 @@
                     });
                 }
             });
+
             var items;
             DBHelper.fetchRestaurants((error, restaurants) => {
                 if (error) {
@@ -156,6 +151,7 @@
                     items = restaurants;
                 }
             });
+
 
             dbPromise.then(function (db) {
                 var tx = db.transaction('restaurants', 'readwrite');
@@ -167,15 +163,16 @@
             }).then(function () {
                 console.log('Store updated');
             });
+
         }
         createAndUpdateDB();
-        */
+
 
         // load images after 1 sec
         setTimeout(function () {
             document.getElementById("lazyload").style.display = "block";
-        }, 1000);
-        
+        }, 100);
+
         /*
         // service worker invocation
         if ('serviceWorker' in navigator) {
@@ -198,7 +195,7 @@
 
 
 </body>
+
+
+
 </html>
-
-
-
