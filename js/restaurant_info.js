@@ -113,7 +113,7 @@ fillReviewsHTML = (reviews = self.restaurant.reviews) => {
   /*****************'' */
   console.log('Reviews:', reviews);
 
-
+  
 
   const container = document.getElementById('reviews-container');
   const title = document.createElement('h2');

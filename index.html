@@ -128,7 +128,7 @@
                 console.log('This browser doesn\'t support IndexedDB');
                 return;
             }
-            var dbPromise = idb.open('restaurant-reviews', 1, function (upgradeDb) {
+            var dbPromise = idb.open('restaurants', 1, function (upgradeDb) {
                 if (!upgradeDb.objectStoreNames.contains('restaurants')) {
                     var restaurantsStore = upgradeDb.createObjectStore('restaurants', {
                         keyPath: 'id'
@@ -141,14 +141,34 @@
                         unique: true
                     });
                 }
+
+                if (!upgradeDb.objectStoreNames.contains('restaurantReviews')) {
+                    var restaurantsReviews = upgradeDb.createObjectStore('restaurantReviews', {
+                        keyPath: 'id'
+                    });
+
+                    restaurantsReviews.createIndex('restaurant', 'restaurant_id', {
+                        unique: false
+                    });
+                }
+
             });
 
             var items;
+            var revs;
             DBHelper.fetchRestaurants((error, restaurants) => {
                 if (error) {
                     console.log('error on retrieving restaurants data!');
                 } else {
                     items = restaurants;
+                }
+            });
+
+             DBHelper.fetchReviewsApiById((error, id) => {
+                if (error) {
+                    console.log('error on retrieving restaurants data!');
+                } else {
+                    revs = id;
                 }
             });
 
@@ -159,9 +179,22 @@
                 items.forEach(item => {
                     store.put(item);
                 });
+
                 return tx.complete;
             }).then(function () {
                 console.log('Store updated');
+            });
+
+            dbPromise.then(function(rev){
+                var txt = rev.transaction('reviews', 'readwrite');
+                var ReviewsStore = txt.objectStore('restaurantReviews');
+                revs.forEach(rev => {
+                    ReviewsStore.put(rev);
+                });
+
+                return txt.complete;
+            }).then(function(){
+                console.log('Reviews updated');
             });
 
         }
@@ -183,6 +216,7 @@
             });
         }
         */
+       
 
         // toogle button for show google map
         $(document).ready(function () {

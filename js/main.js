@@ -193,13 +193,13 @@ changeFavElementClass = (el, fav) => {
   if (!fav) {
     el.classList.remove('favorite_yes');
     el.classList.add('favorite_no');
-    el.setAttribute('aria-label', 'mark as favorite');
+    el.setAttribute('aria-label', 'toggle as favorite');
 
   } else {
-    console.log('toggle yes upd');
+    console.log('favourite buttons updated');
     el.classList.remove('favorite_no');
     el.classList.add('favorite_yes');
-    el.setAttribute('aria-label', 'remove as favorite');
+    el.setAttribute('aria-label', 'remove favorite');
 
   }
 }
