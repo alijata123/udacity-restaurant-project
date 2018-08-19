@@ -157,7 +157,7 @@ createRestaurantHTML = (restaurant) => {
   favourite.innerHTML = '&#9733;';
   favourite.classList.add("fav_btn");
   //change fav status on click
-  favourite.onclick = function() {
+  favourite.onclick = function () {
     const isFavNow = !restaurant.is_favorite;
     DBHelper.updateFavouriteStatus(restaurant.id, isFavNow);
     restaurant.is_favorite = !restaurant.is_favorite
@@ -166,11 +166,11 @@ createRestaurantHTML = (restaurant) => {
   changeFavElementClass(favourite, restaurant.is_favorite)
   li.append(favourite);
   /*^^^^^^^^^^^^^^^^^^^^^*/
-  
-  
 
-  
-  
+
+
+
+
   const neighborhood = document.createElement('p');
   neighborhood.innerHTML = restaurant.neighborhood;
   li.append(neighborhood);

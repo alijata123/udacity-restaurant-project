@@ -64,7 +64,7 @@ fillRestaurantHTML = (restaurant = self.restaurant) => {
   address.innerHTML = restaurant.address;
 
   const image = document.getElementById('restaurant-img');
-  image.className = 'restaurant-img'
+  image.className = 'restaurant-img';
   /* alt  added by me */
   image.alt = 'The image of ' + restaurant.name + ' restaurant';
   image.src = DBHelper.imageUrlForRestaurant(restaurant);
@@ -168,6 +168,7 @@ createReviewHTML = (review) => {
 
   const deleteButton = document.createElement('button');
   deleteButton.innerHTML = '&#10006; Delete';
+  deleteButton.style.color = 'red';
   deleteButton.classList.add("del_btn");
   li.appendChild(deleteButton);
 

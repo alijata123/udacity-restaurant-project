@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -26,7 +26,7 @@
             margin: 50px 0 50px;
             margin-left: calc((100% - 155px)/ 2);
             width: 150px;
-            color: white;
+            color: black;
             font-weight: bold;
             background-color: #2fbebd;
             padding: 10px 5px 10px 5px;
@@ -61,7 +61,12 @@
         }
 
         .favorite_no {
-            color: #959595;
+            color: black;
+        }
+
+        .filter-options > img {
+           position: absolute;
+            
         }
         
     </style>
@@ -91,7 +96,7 @@
                 </select>
             </div>
 
-            <button aria-label="show map" class="collapsible">Toggle Google Map</button>
+            <button aria-label="show map" class="collapsible" tabindex="-1">Toggle Google Map</button>
             <section id="map-container" class="content">
                 <div tabindex="-1" id="map" role="application" aria-hidden="true"></div>
             </section>
@@ -118,7 +123,7 @@
     <!-- <script src="dist/js/all.js"></script>-->
 
     <script>
-
+    
         //register indexedDb with promises
         function createAndUpdateDB() {
             'use strict';
@@ -163,7 +168,15 @@
                     items = restaurants;
                 }
             });
+            DBHelper.fetchReviews((error, reviews) => {
+                if (error) {
+                    console.log('error on retrieving restaurants data!');
+                } else {
+                    revs = reviews;
+                }
+            });
 
+            /*
              DBHelper.fetchReviewsApiById((error, id) => {
                 if (error) {
                     console.log('error on retrieving restaurants data!');
@@ -171,6 +184,7 @@
                     revs = id;
                 }
             });
+            */
 
 
             dbPromise.then(function (db) {
@@ -186,19 +200,22 @@
             });
 
             dbPromise.then(function(rev){
-                var txt = rev.transaction('reviews', 'readwrite');
-                var ReviewsStore = txt.objectStore('restaurantReviews');
+                var tx = rev.transaction('restaurantReviews', 'readwrite');
+                var store = tx.objectStore('restaurantReviews');
                 revs.forEach(rev => {
-                    ReviewsStore.put(rev);
+                    store.put(rev);
                 });
-
-                return txt.complete;
+              
+                return tx.complete;
             }).then(function(){
                 console.log('Reviews updated');
             });
 
         }
         createAndUpdateDB();
+
+    
+
 
 
         // load images after 1 sec

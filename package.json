@@ -45,6 +45,8 @@
     "gulp-util": "^3.0.8",
     "idb": "^2.1.1",
     "imagemin-pngquant": "^5.1.0",
+    "jshint": "^2.9.6",
+    "jslint": "^0.12.0",
     "layzr.js": "^2.2.2",
     "pump": "^3.0.0",
     "uglify-es": "^3.3.9",

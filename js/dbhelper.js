@@ -5,6 +5,7 @@
 
 
 class DBHelper {
+  
 
   /**
      * Database URL.
@@ -14,15 +15,68 @@ class DBHelper {
       const port = 1337 // Change this to your server port
       return `http://localhost:${port}/restaurants`;
     }
-  
-  
+
+
     static get REVIEWS_DATABASE_URL() {
       const port = 1337 // Change this to your server port
       return `http://localhost:${port}/reviews`;
-      //`http://localhost:${port}/`;     
+      //`http://localhost:${port}/`;    
     }
+
+
   
-  /*****************************************' */
+
+
+     //Fetch all restaurants.
+ 
+    static fetchRestaurants(callback) {
+      let xhr = new XMLHttpRequest();
+      xhr.open('GET', DBHelper.DATABASE_URL);
+      xhr.onload = () => {
+        if (xhr.status === 200) { // Got a success response from server!
+          const restaurants = JSON.parse(xhr.responseText);
+          callback(null, restaurants);
+        } else { // Oops!. Got an error from server.
+          const error = (`Request failed. Returned status of ${xhr.status}`);
+          callback(error, null);
+        }
+      };
+      xhr.send();
+    }
+    
+    static fetchReviews(callback) {
+      let xhr = new XMLHttpRequest();
+      xhr.open('GET', DBHelper.REVIEWS_DATABASE_URL);
+      xhr.onload = () => {
+        if (xhr.status === 200) { // Got a success response from server!
+          const reviews = JSON.parse(xhr.responseText);
+          callback(null, reviews);
+        } else { // Oops!. Got an error from server.
+          const error = (`Request failed. Returned status of ${xhr.status}`);
+          callback(error, null);
+        }
+      };
+      xhr.send();
+    }
+
+    // Delete Reviews
+    static deleteReviews(callback) {
+      let xhr = new XMLHttpRequest();
+      xhr.open('DELETE', DBHelper.REVIEWS_DATABASE_URL);
+      xhr.onload = () => {
+        if (xhr.status === 200) { // Got a success response from server!
+          const reviews = JSON.parse(xhr.responseText);
+          callback(null, reviews);
+        } else { // Oops!. Got an error from server.
+          const error = (`Request failed. Returned status of ${xhr.status}`);
+          callback(error, null);
+        }
+      };
+      xhr.send();
+    }
+
+
+    /*****************************************/
     static fetchReviewsApiById(id) {
       // fetch all reviews with proper error handling.
       // Using fetch
@@ -40,49 +94,12 @@ class DBHelper {
         console.error(error)
       });
     }
+ 
+  
+ 
+
+
     
-  
-     //Fetch all restaurants.
-    /**/
-    static fetchRestaurants(callback) {
-      let xhr = new XMLHttpRequest();
-      xhr.open('GET', DBHelper.DATABASE_URL);
-      xhr.onload = () => {
-        if (xhr.status === 200) { // Got a success response from server!
-          const restaurants = JSON.parse(xhr.responseText);
-          callback(null, restaurants);
-        } else { // Oops!. Got an error from server.
-          const error = (`Request failed. Returned status of ${xhr.status}`);
-          callback(error, null);
-        }
-      };
-      xhr.send(); 
-  
-    }
-    
-  
-  
-    /************************************************ */
-    static fetchAndCacheRestaurants() {
-      return fetch(DBHelper.DATABASE_URL + 'restaurants')
-        .then(response => response.json())
-        .then(restaurants => {
-          return this.dbPromise()
-            .then(db => {
-              const tx = db.transaction('restaurants', 'readwrite');
-              const restaurantStore = tx.objectStore('restaurants');
-              restaurants.forEach(restaurant => restaurantStore.put(restaurant));
-  
-              return tx.complete.then(() => Promise.resolve(restaurants));
-            });
-        });
-    }
-  
-  
-  
-  
-  
-  
     /**
      * Fetch a restaurant by its ID.
      */
@@ -230,21 +247,23 @@ class DBHelper {
   
     /******************************************** */
     static addReview(review) {
-      let offline_obj = {
+      let offline_rev = {
         name: 'addReview',
         data: review,
         object_type: 'review'
       };
       // Check if online
-      if (!navigator.onLine && (offline_obj.name === 'addReview')) {
-        DBHelper.sendDataWhenOnline(offline_obj);
+      if (!navigator.onLine && (offline_rev.name === 'addReview')) {
+        DBHelper.getDataWhenConnection(offline_rev);
         return;
       }
       let reviewSend = {
         "name": review.name,
         "rating": parseInt(review.rating),
         "comments": review.comments,
-        "restaurant_id": parseInt(review.restaurant_id)
+        "restaurant_id": parseInt(review.restaurant_id),
+        "createdAt": new Date(),
+        "updatedAt": new Date()
       };
       console.log('Sending review: ', reviewSend);
       var fetch_options = {
@@ -265,10 +284,10 @@ class DBHelper {
   
   
   
-    static sendDataWhenOnline(offline_obj) {
-      console.log('Offline OBJ', offline_obj);
-      localStorage.setItem('data', JSON.stringify(offline_obj.data));
-      alert(`Success: Your ${offline_obj.object_type} was stored in offline mode!`);
+    static getDataWhenConnection(offline_rev) {
+      console.log('Offline Review', offline_rev);
+      localStorage.setItem('data', JSON.stringify(offline_rev.data));
+      alert(`Success: Your ${offline_rev.object_type} was stored in offline mode!`);
       window.addEventListener('online', (event) => {
         console.log('Browser: Online again!');
         let data = JSON.parse(localStorage.getItem('data'));
@@ -280,19 +299,19 @@ class DBHelper {
         });
         if (data !== null) {
           console.log(data);
-          if (offline_obj.name === 'addReview') {
-            DBHelper.addReview(offline_obj.data);
+          if (offline_rev.name === 'addReview') {
+            DBHelper.addReview(offline_rev.data);
           }
   
           console.log('Data sent to API');
   
           localStorage.removeItem('data');
-          console.log(`Local Storage: ${offline_obj.object_type} removed`);
+          console.log(`Local Storage: ${offline_rev.object_type} removed`);
         }
       });
     }
   
-  
+ 
     static updateFavouriteStatus(restaurantId, isFavourite) {
       console.log('changing status to: ', isFavourite);
   
@@ -314,7 +333,8 @@ class DBHelper {
         })
   
     }
-  
+ 
+
   
     /**
      * Fetch all reviews.
@@ -349,7 +369,7 @@ class DBHelper {
     }
 
 
-    /*************************** */
+    /*************************** 
     static fetchReviewsByRestId(id) {
       return fetch(`${DBHelper.DATABASE_URL}reviews/?restaurant_id=${id}`)
         .then(response => response.json())
@@ -379,10 +399,10 @@ class DBHelper {
             })
         });
     }
+    */
   
    
   
-
 
 
 
